@@ -287,13 +287,12 @@ a {
   border-radius: 37px;
 }
 
-/* Screens drift up into place as they change, like the next screen sliding in. */
 .phone-screen {
   opacity: 0;
-  transform: translateY(3.5%) scale(1.015);
+  transform: scale(1.025);
   transition:
     opacity 0.9s var(--ease),
-    transform 1.3s var(--ease);
+    transform 1.2s var(--ease);
 }
 
 .phone-screen.is-on {
@@ -1278,16 +1277,6 @@ video::cue {
 .has-motion [data-hero-fade],
 .has-motion [data-hero-device] {
   opacity: 0;
-}
-
-/* Hidden until split, so the opening never flashes the unanimated text first. */
-.has-motion .hero-title,
-.has-motion [data-hero-role] {
-  visibility: hidden;
-}
-
-.hero-device {
-  transform-style: preserve-3d;
 }
 
 @media (prefers-reduced-motion: reduce) {
