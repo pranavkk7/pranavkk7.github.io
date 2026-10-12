@@ -165,7 +165,7 @@ mm.add(
     const hero = $('[data-carousel]')
     let heroIndex = 0
     const heroCount = $$('.phone-screen', hero).length
-    const cycle = gsap.delayedCall(3, function next() {
+    const cycle = gsap.delayedCall(4.5, function next() {
       heroIndex = (heroIndex + 1) % heroCount
       showScreen(hero, heroIndex)
       cycle.restart(true)
