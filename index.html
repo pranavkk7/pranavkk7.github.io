@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pranav KK, Flutter and Python developer</title>
-    <meta name="description" content="Pranav KK, Flutter and Python developer in Bengaluru. I built the front-desk app a gym in Kerala runs on every day, an AI food-ordering assistant on Claude tool use, and a subtitle tool that benchmarks speech models." />
+    <meta name="description" content="Pranav KK, Flutter and Python developer. I built the front-desk app a gym in Kerala runs on every day, an AI food-ordering assistant built on LLM tool calling, and a subtitle tool that benchmarks speech models." />
     <meta name="theme-color" content="#EDEFEB" />
     <meta property="og:title" content="Pranav KK, Flutter and Python developer" />
     <meta property="og:description" content="My app runs a gym's front desk every day. Flutter, Python and AI projects, each with a demo and its code." />
@@ -44,7 +44,7 @@
           </p>
           <ul class="hero-index" data-hero-fade aria-label="Projects">
             <li><a href="#work"><b>Unique Fitness Gym</b><span>Flutter, Android</span></a></li>
-            <li><a href="#cravio"><b>Cravio</b><span>Django and Claude tool use</span></a></li>
+            <li><a href="#cravio"><b>Cravio</b><span>Django and LLM tool calling</span></a></li>
             <li><a href="#polysub"><b>PolySub</b><span>Speech models, benchmarked</span></a></li>
           </ul>
           <p class="hero-status" data-hero-fade>
@@ -153,13 +153,13 @@
           </div>
           <div class="project-text">
             <h3>Cravio</h3>
-            <p class="project-what">Food delivery where a Claude assistant builds your cart from a plain-English request.</p>
+            <p class="project-what">Food delivery where an AI assistant builds your cart from a plain-English request.</p>
             <ul>
-              <li>Ask for "biryani under ₹300 that reaches me in 30 minutes": Claude searches the demo menus through five server-side tools, suggests matching dishes and adds the ones you pick to your cart. Checkout always stays with the customer.</li>
+              <li>Ask for "biryani under ₹300 that reaches me in 30 minutes": the assistant searches the demo menus through five server-side tools, suggests matching dishes and adds the ones you pick to your cart. Checkout always stays with the customer.</li>
               <li>Only restaurants that deliver to your location, nearest first, with delivery times; out-of-range orders are refused on the server.</li>
               <li>Role-based access for customers, vendors and admins, Razorpay payments verified on the server, and 85 automated tests.</li>
             </ul>
-            <p class="project-stack">Python, Django, Claude API tool use, MySQL, Razorpay, Leaflet</p>
+            <p class="project-stack">Python, Django, LLM tool calling, MySQL, Razorpay, Leaflet</p>
             <p class="project-links"><a href="https://cravio-p4lw.onrender.com">Live demo</a><a href="https://github.com/pranavkk7/cravio">Code</a></p>
             <p class="project-note">The demo runs on a free server that sleeps when idle, so the first visit can take about a minute.</p>
           </div>
@@ -173,7 +173,7 @@
                 <li><span class="subs-time">00:01.6 → 00:05.7</span><span lang="ja">日本には約7000の島々があり、その最大は本州列島</span><span>There are about 7,000 islands in Japan, and the largest of them is the Honshu</span></li>
                 <li><span class="subs-time">00:05.8 → 00:08.7</span><span lang="ja">で、世界で7番目に大きい島とされています。</span><span>Islands, the seventh largest island in the world.</span></li>
               </ol>
-              <p class="subs-foot">Japanese by Whisper large-v3. The English in this sample is Whisper's built-in translation; PolySub's Claude translation needs an API key.</p>
+              <p class="subs-foot">Japanese by Whisper large-v3. The English in this sample is Whisper's built-in translation; PolySub's LLM translation needs an API key.</p>
             </div>
             <button class="sample" type="button" data-sample="/media/polysub.mp4" data-track="/media/polysub-en.vtt">
               <span class="sample-icon" aria-hidden="true"></span>
@@ -185,10 +185,10 @@
             <p class="project-what">Subtitles in about 100 languages, using whichever speech model measured more accurate.</p>
             <ul>
               <li>I benchmarked models on Google's FLEURS: Qwen3-ASR won for English (3.8% word error rate) and Whisper large-v3 for Japanese (4.1% character error rate).</li>
-              <li>Claude translates in numbered batches and must return one line per subtitle, so every subtitle keeps its timing. Outputs SRT, WebVTT, bilingual files or video with subtitles burned in.</li>
-              <li>Speech recognition runs locally on my RTX 4060; translation calls the Claude API. A Gradio web page, and 44 tests that run without a GPU.</li>
+              <li>An LLM translates in numbered batches and must return one line per subtitle, so every subtitle keeps its timing. Outputs SRT, WebVTT, bilingual files or video with subtitles burned in.</li>
+              <li>Speech recognition runs locally on my RTX 4060; translation calls an LLM API. A Gradio web page, and 44 tests that run without a GPU.</li>
             </ul>
-            <p class="project-stack">Python, PyTorch, Qwen3-ASR, Whisper, Claude API, FFmpeg, Gradio</p>
+            <p class="project-stack">Python, PyTorch, Qwen3-ASR, Whisper, LLM API, FFmpeg, Gradio</p>
             <p class="project-links"><a href="https://pranavkk7.github.io/polysub/">Watch the demo</a><a href="https://github.com/pranavkk7/polysub">Code</a></p>
           </div>
         </article>
@@ -228,7 +228,7 @@
           <div><dt>Languages</dt><dd>Python, Dart, JavaScript, Java, SQL</dd></div>
           <div><dt>Mobile</dt><dd>Flutter, Provider, Hive, Android builds</dd></div>
           <div><dt>Backend</dt><dd>Django, REST APIs, MySQL, SQLite</dd></div>
-          <div><dt>AI</dt><dd>Claude API and tool use, Whisper, Qwen3-ASR, PyTorch, model evaluation</dd></div>
+          <div><dt>AI</dt><dd>LLM APIs and tool calling, Whisper, Qwen3-ASR, PyTorch, model evaluation</dd></div>
           <div><dt>Frontend</dt><dd>React, HTML, CSS, GSAP, Vite</dd></div>
           <div><dt>Shipping</dt><dd>Git, GitHub Actions, pytest, Vitest, Flutter tests, Render, GitHub Pages</dd></div>
         </dl>
