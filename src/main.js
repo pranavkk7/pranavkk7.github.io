@@ -145,20 +145,21 @@ mm.add(
       linesClass: 'line',
       autoSplit: true,
       onSplit: (self) => {
-        if (intro.progress() === 0) intro.from(self.lines, { yPercent: 110, duration: 1.3, stagger: 0.09 }, 0.15)
+        if (intro.progress() === 0) intro.from(self.lines, { yPercent: 110, duration: 1, stagger: 0.07 }, 0.05)
       },
     })
     intro
-      .from(nav, { y: -24, opacity: 0, duration: 1 }, 0)
-      .to('[data-hero-fade]', { opacity: 1, duration: 1.1, stagger: 0.08 }, 0.55)
-      .from('[data-hero-fade]', { y: 18, duration: 1.1, stagger: 0.08 }, 0.55)
+      .from(nav, { y: -20, opacity: 0, duration: 0.8 }, 0)
+      .to('[data-hero-fade]', { opacity: 1, duration: 0.9, stagger: 0.06 }, 0.25)
+      .from('[data-hero-fade]', { y: 14, duration: 0.9, stagger: 0.06 }, 0.25)
       .fromTo(
         '[data-hero-device]',
         { opacity: 0, y: 90, rotate: -5, scale: 0.94 },
-        { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 1.8 },
-        0.35,
+        { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 1.5 },
+        0.15,
       )
-    document.fonts.ready.then(() => intro.play())
+    // Start once the font is ready, but never keep the hero hidden for long on a slow connection.
+    Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 800))]).then(() => intro.play())
 
     // The hero phone cycles through screens while it is on screen.
     const hero = $('[data-carousel]')
@@ -195,8 +196,8 @@ mm.add(
     // 3. The tablet settles from a slight tilt as it scrolls in.
     gsap.fromTo(
       '[data-tablet] .tablet-frame',
-      { scale: 0.88, rotateX: 14, transformPerspective: 1400, opacity: 0.4 },
-      { scale: 1, rotateX: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: '[data-tablet]', start: 'top 95%', end: 'top 35%', scrub: true } },
+      { scale: 0.9, rotateX: 12, transformPerspective: 1400 },
+      { scale: 1, rotateX: 0, ease: 'none', scrollTrigger: { trigger: '[data-tablet]', start: 'top 95%', end: 'top 40%', scrub: true } },
     )
 
     // 4. Project pictures open from a slim window, and drift inside their frame on scroll.
@@ -211,9 +212,9 @@ mm.add(
           scrollTrigger: { trigger: media, start: 'top 82%', once: true },
         },
       )
-      const img = $('[data-parallax]', media)
+      const img = $('[data-zoom]', media)
       if (img) {
-        gsap.fromTo(img, { yPercent: -4 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: media, start: 'top bottom', end: 'bottom top', scrub: true } })
+        gsap.fromTo(img, { scale: 1.07 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: media, start: 'top bottom', end: 'center center', scrub: true } })
       }
     })
 
@@ -252,11 +253,9 @@ mm.add(
 function storyTriggers() {
   const steps = $$('[data-step]')
   const stage = $('[data-stage]')
-  const device = $('.story-device')
   const setStep = (i) => {
     steps.forEach((s, n) => s.classList.toggle('is-active', n === i))
     showScreen(stage, i)
-    device.classList.toggle('is-trio', i === steps.length - 1)
   }
   setStep(0)
   steps.forEach((step, i) =>
