@@ -134,32 +134,69 @@ mm.add(
     dialog.addEventListener('close', () => lenis?.start())
     $$('[data-run-app]').forEach((b) => b.addEventListener('click', () => dialog.open && lenis?.stop()))
 
-    // 1. The one load moment: the headline rises line by line, the copy settles, and the phone
-    //    lifts into place with a slight turn, as if set down on the desk.
-    // Lines are measured once the web font has loaded, so they break where the reader sees them.
-    // autoSplit re-measures if the window is resized mid-animation.
+    // 1. The one load moment, about 1.8 seconds, on a single timeline:
+    //    the name's letters ripple up out of their line, the career line follows word by word, the
+    //    paragraph comes into focus, the project cards step in, and the phone tilts up and settles
+    //    as if set down on the desk. The nav arrives last, once the page is composed.
+    // Text is split once the web font has loaded so it breaks where the reader sees it; autoSplit
+    // re-measures on resize.
     const intro = gsap.timeline({ defaults: { ease: 'expo.out' }, paused: true })
-    const split = SplitText.create('[data-split]', {
-      type: 'lines',
+    const name = $('[data-split]')
+    const role = $('[data-hero-role]')
+    const split = SplitText.create(name, {
+      type: 'lines,chars',
       mask: 'lines',
-      linesClass: 'line',
       autoSplit: true,
       onSplit: (self) => {
-        if (intro.progress() === 0) intro.from(self.lines, { yPercent: 110, duration: 1, stagger: 0.07 }, 0.05)
+        gsap.set(name, { visibility: 'visible' })
+        if (intro.progress() === 0) {
+          intro.from(self.chars, { yPercent: 118, rotate: 4, duration: 1.25, stagger: 0.035 }, 0.05)
+        }
+      },
+    })
+    const roleSplit = SplitText.create(role, {
+      type: 'lines,words',
+      mask: 'lines',
+      autoSplit: true,
+      onSplit: (self) => {
+        gsap.set(role, { visibility: 'visible' })
+        if (intro.progress() === 0) intro.from(self.words, { yPercent: 110, duration: 1, stagger: 0.035 }, 0.42)
       },
     })
     intro
-      .from(nav, { y: -20, opacity: 0, duration: 0.8 }, 0)
-      .to('[data-hero-fade]', { opacity: 1, duration: 0.9, stagger: 0.06 }, 0.25)
-      .from('[data-hero-fade]', { y: 14, duration: 0.9, stagger: 0.06 }, 0.25)
+      .fromTo('.hero-lede', { autoAlpha: 0, y: 14, filter: 'blur(10px)' }, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.1 }, 0.7)
+      .fromTo('.hero-index li', { autoAlpha: 0, y: 26, scale: 0.97 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, stagger: 0.07 }, 0.85)
+      .set('.hero-index', { opacity: 1 }, 0.85)
+      .fromTo('.hero-status', { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.8 }, 1.05)
       .fromTo(
         '[data-hero-device]',
-        { opacity: 0, y: 90, rotate: -5, scale: 0.94 },
-        { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 1.5 },
-        0.15,
+        { autoAlpha: 0, y: 150, rotateX: 26, rotateZ: -4, scale: 0.9, transformPerspective: 1200, transformOrigin: '50% 100%' },
+        { autoAlpha: 1, y: 0, rotateX: 0, rotateZ: 0, scale: 1, duration: 1.9, ease: 'expo.out' },
+        0.25,
       )
+      .from(nav, { y: -18, autoAlpha: 0, duration: 0.9 }, 0.95)
+      .add(() => document.documentElement.classList.add('intro-done'))
     // Start once the font is ready, but never keep the hero hidden for long on a slow connection.
     Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 800))]).then(() => intro.play())
+
+    // After it lands, the phone leans slightly toward the pointer: a small 3D response to the reader.
+    if (mouse) {
+      const phone = $('.hero-device .phone')
+      gsap.set(phone, { transformPerspective: 1100 })
+      const rx = gsap.quickTo(phone, 'rotateX', { duration: 0.9, ease: 'power3.out' })
+      const ry = gsap.quickTo(phone, 'rotateY', { duration: 0.9, ease: 'power3.out' })
+      const hero = $('.hero')
+      hero.addEventListener('pointermove', (e) => {
+        if (intro.isActive()) return
+        const r = hero.getBoundingClientRect()
+        ry(((e.clientX - r.left) / r.width - 0.5) * 10)
+        rx(-((e.clientY - r.top) / r.height - 0.5) * 7)
+      })
+      hero.addEventListener('pointerleave', () => {
+        rx(0)
+        ry(0)
+      })
+    }
 
     // The hero phone cycles through screens while it is on screen.
     const hero = $('[data-carousel]')
@@ -243,6 +280,7 @@ mm.add(
       if (raf) gsap.ticker.remove(raf)
       lenis?.destroy()
       split.revert()
+      roleSplit.revert()
       document.documentElement.classList.remove('has-motion')
     }
   },
