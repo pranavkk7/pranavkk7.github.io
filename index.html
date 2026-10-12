@@ -38,15 +38,15 @@
           <h1 id="hero-title" class="hero-title" data-split>Pranav KK</h1>
           <p class="hero-role" data-hero-fade>AI integration developer. Python, LLMs and Flutter.</p>
           <p class="hero-lede" data-hero-fade>
-            I moved from planning industrial plant construction into software in 2025. Now I build AI
-            into real products: an LLM agent that fills a food-delivery cart from a plain-English request,
-            and a subtitle pipeline on speech models I benchmarked. I also ship Flutter apps; one runs the
-            front desk of a gym in Pinarayi, Kerala, every day.
+            I moved from planning industrial plant construction into software in 2025. My main app now
+            runs the front desk of a gym in Pinarayi, Kerala, every day. I also build AI into real
+            products: an LLM agent that fills a food-delivery cart from a plain-English request, and a
+            subtitle pipeline on speech models I benchmarked.
           </p>
           <ul class="hero-index" data-hero-fade aria-label="Projects">
+            <li><a href="#work"><b>Unique Fitness Gym</b><span>Flutter, in daily use</span></a></li>
             <li><a href="#cravio"><b>Cravio</b><span>LLM agent with tool calling</span></a></li>
             <li><a href="#polysub"><b>PolySub</b><span>Speech models and LLM translation</span></a></li>
-            <li><a href="#gym"><b>Unique Fitness Gym</b><span>Flutter, in daily use</span></a></li>
           </ul>
           <p class="hero-status" data-hero-fade>
             <span class="live-dot" aria-hidden="true"></span>Open to AI integration, GenAI and Python developer roles in the UAE (ready to relocate and join immediately) or in Bengaluru and remote.
@@ -67,64 +67,10 @@
         </div>
       </section>
 
-      <!-- 2. AI projects -->
-      <section id="work" class="projects" aria-labelledby="more-title">
-        <h2 id="more-title" class="section-title">AI projects</h2>
-
-        <article id="cravio" class="project">
-          <div class="project-media" data-reveal>
-            <div class="browser"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></span>
-              <div class="browser-shot"><img data-zoom src="/img/cravio-home.webp" width="1280" height="1250" loading="lazy" decoding="async" alt="Cravio home page: restaurants that deliver to you, nearest first, each with a delivery time." /></div>
-            </div>
-          </div>
-          <div class="project-text">
-            <h3>Cravio</h3>
-            <p class="project-what">Food delivery where an AI assistant builds your cart from a plain-English request.</p>
-            <ul>
-              <li>Ask for "biryani under ₹300 that reaches me in 30 minutes": the assistant searches the demo menus through five server-side tools, suggests matching dishes and adds the ones you pick to your cart. Checkout always stays with the customer.</li>
-              <li>The assistant is an agent loop: the model asks for a tool, the server runs it and sends back the result, up to six rounds per message. It is told to recommend only what the tools returned, so it doesn't invent dishes or prices, and a visitor's own API key is used for that one request and never stored.</li>
-              <li>Only restaurants that deliver to your location, nearest first, with delivery times; out-of-range orders are refused on the server.</li>
-              <li>Role-based access for customers, vendors and admins, Razorpay payments verified on the server, and 85 automated tests.</li>
-            </ul>
-            <p class="project-stack">Python, Django, LLM tool calling, MySQL, Razorpay, Leaflet</p>
-            <p class="project-links"><a href="https://cravio-p4lw.onrender.com">Live demo</a><a href="https://github.com/pranavkk7/cravio">Code</a></p>
-            <p class="project-note">The demo runs on a free server that sleeps when idle, so the first visit can take about a minute.</p>
-          </div>
-        </article>
-
-        <article id="polysub" class="project project-flip">
-          <div class="project-media" data-reveal>
-            <div class="subs" data-sample-slot>
-              <p class="subs-head">PolySub output on Japanese sentences from Google's FLEURS dataset</p>
-              <ol class="subs-list">
-                <li><span class="subs-time">00:01.6 → 00:05.7</span><span lang="ja">日本には約7000の島々があり、その最大は本州列島</span><span>There are about 7,000 islands in Japan, and the largest of them is the Honshu</span></li>
-                <li><span class="subs-time">00:05.8 → 00:08.7</span><span lang="ja">で、世界で7番目に大きい島とされています。</span><span>Islands, the seventh largest island in the world.</span></li>
-              </ol>
-              <p class="subs-foot">Japanese by Whisper large-v3. The English in this sample is Whisper's built-in translation; PolySub's LLM translation needs an API key.</p>
-            </div>
-            <button class="sample" type="button" data-sample="/media/polysub.mp4" data-track="/media/polysub-en.vtt">
-              <span class="sample-icon" aria-hidden="true"></span>
-              <span><b>Play the clip</b> with PolySub's English subtitles (sound on)</span>
-            </button>
-          </div>
-          <div class="project-text">
-            <h3>PolySub</h3>
-            <p class="project-what">Subtitles in about 100 languages, using whichever speech model measured more accurate.</p>
-            <ul>
-              <li>I benchmarked models on Google's FLEURS: Qwen3-ASR won for English (3.8% word error rate) and Whisper large-v3 for Japanese (4.1% character error rate).</li>
-              <li>An LLM translates in numbered batches and replies in a fixed JSON schema, one line per subtitle; any line it misses is asked for again, so every subtitle keeps its timing. Each batch sees the last few translations, so names stay consistent. Outputs SRT, WebVTT, bilingual files or video with subtitles burned in.</li>
-              <li>Speech recognition runs locally on my RTX 4060; translation calls an LLM API. A Gradio web page, and 44 tests that run without a GPU.</li>
-            </ul>
-            <p class="project-stack">Python, PyTorch, Qwen3-ASR, Whisper, LLM API, FFmpeg, Gradio</p>
-            <p class="project-links"><a href="https://pranavkk7.github.io/polysub/">Watch the demo</a><a href="https://github.com/pranavkk7/polysub">Code</a></p>
-          </div>
-        </article>
-      </section>
-
-      <!-- 3. The shipped Flutter app as a scroll story -->
-      <section id="gym" class="feature" aria-labelledby="gym-title">
+      <!-- 2. The main project as a scroll story -->
+      <section id="work" class="feature" aria-labelledby="gym-title">
         <div class="feature-intro">
-          <p class="feature-label">Shipped and in daily use</p>
+          <p class="feature-label">Main project</p>
           <h2 id="gym-title" class="feature-title" data-split-words>Unique Fitness Gym</h2>
           <p class="feature-lede">
             The front-desk app of a gym in Pinarayi, Kerala, used there every day on the gym
@@ -196,9 +142,60 @@
         </div>
       </section>
 
-      <!-- Smaller, non-AI work, after the shipped app -->
-      <section class="smaller-band" aria-label="Smaller work">
-        <div class="smaller smaller-alone">
+      <!-- 3. More projects -->
+      <section class="projects" aria-labelledby="more-title">
+        <h2 id="more-title" class="section-title">More projects</h2>
+
+        <article id="cravio" class="project">
+          <div class="project-media" data-reveal>
+            <div class="browser"><span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <div class="browser-shot"><img data-zoom src="/img/cravio-home.webp" width="1280" height="1250" loading="lazy" decoding="async" alt="Cravio home page: restaurants that deliver to you, nearest first, each with a delivery time." /></div>
+            </div>
+          </div>
+          <div class="project-text">
+            <h3>Cravio</h3>
+            <p class="project-what">Food delivery where an AI assistant builds your cart from a plain-English request.</p>
+            <ul>
+              <li>Ask for "biryani under ₹300 that reaches me in 30 minutes": the assistant searches the demo menus through five server-side tools, suggests matching dishes and adds the ones you pick to your cart. Checkout always stays with the customer.</li>
+              <li>The assistant is an agent loop: the model asks for a tool, the server runs it and sends back the result, up to six rounds per message. It is told to recommend only what the tools returned, so it doesn't invent dishes or prices, and a visitor's own API key is used for that one request and never stored.</li>
+              <li>Only restaurants that deliver to your location, nearest first, with delivery times; out-of-range orders are refused on the server.</li>
+              <li>Role-based access for customers, vendors and admins, Razorpay payments verified on the server, and 85 automated tests.</li>
+            </ul>
+            <p class="project-stack">Python, Django, LLM tool calling, MySQL, Razorpay, Leaflet</p>
+            <p class="project-links"><a href="https://cravio-p4lw.onrender.com">Live demo</a><a href="https://github.com/pranavkk7/cravio">Code</a></p>
+            <p class="project-note">The demo runs on a free server that sleeps when idle, so the first visit can take about a minute.</p>
+          </div>
+        </article>
+
+        <article id="polysub" class="project project-flip">
+          <div class="project-media" data-reveal>
+            <div class="subs" data-sample-slot>
+              <p class="subs-head">PolySub output on Japanese sentences from Google's FLEURS dataset</p>
+              <ol class="subs-list">
+                <li><span class="subs-time">00:01.6 → 00:05.7</span><span lang="ja">日本には約7000の島々があり、その最大は本州列島</span><span>There are about 7,000 islands in Japan, and the largest of them is the Honshu</span></li>
+                <li><span class="subs-time">00:05.8 → 00:08.7</span><span lang="ja">で、世界で7番目に大きい島とされています。</span><span>Islands, the seventh largest island in the world.</span></li>
+              </ol>
+              <p class="subs-foot">Japanese by Whisper large-v3. The English in this sample is Whisper's built-in translation; PolySub's LLM translation needs an API key.</p>
+            </div>
+            <button class="sample" type="button" data-sample="/media/polysub.mp4" data-track="/media/polysub-en.vtt">
+              <span class="sample-icon" aria-hidden="true"></span>
+              <span><b>Play the clip</b> with PolySub's English subtitles (sound on)</span>
+            </button>
+          </div>
+          <div class="project-text">
+            <h3>PolySub</h3>
+            <p class="project-what">Subtitles in about 100 languages, using whichever speech model measured more accurate.</p>
+            <ul>
+              <li>I benchmarked models on Google's FLEURS: Qwen3-ASR won for English (3.8% word error rate) and Whisper large-v3 for Japanese (4.1% character error rate).</li>
+              <li>An LLM translates in numbered batches and replies in a fixed JSON schema, one line per subtitle; any line it misses is asked for again, so every subtitle keeps its timing. Each batch sees the last few translations, so names stay consistent. Outputs SRT, WebVTT, bilingual files or video with subtitles burned in.</li>
+              <li>Speech recognition runs locally on my RTX 4060; translation calls an LLM API. A Gradio web page, and 44 tests that run without a GPU.</li>
+            </ul>
+            <p class="project-stack">Python, PyTorch, Qwen3-ASR, Whisper, LLM API, FFmpeg, Gradio</p>
+            <p class="project-links"><a href="https://pranavkk7.github.io/polysub/">Watch the demo</a><a href="https://github.com/pranavkk7/polysub">Code</a></p>
+          </div>
+        </article>
+
+        <div class="smaller">
           <h3 class="smaller-title">Smaller work</h3>
           <p class="smaller-row">
             <span><b>TaskBuddy</b>, a React 19 to-do app with no UI library: a progress ring, light and dark themes that load without a flash, and 27 tests, deployed by CI.</span>
@@ -219,7 +216,7 @@
         </div>
         <ol class="path" data-path>
           <span class="path-line" aria-hidden="true"><span data-path-fill></span></span>
-          <li><span class="path-when">2026–now</span><div><h3>Building AI-integrated apps</h3><p>Cravio's LLM agent and PolySub's speech and translation pipeline, plus Unique Fitness Gym, in daily use at a gym in Kerala. Each with tests and a demo.</p></div></li>
+          <li><span class="path-when">2026–now</span><div><h3>Building my own apps</h3><p>Unique Fitness Gym, in daily use at a gym in Kerala, plus two AI-integrated apps: Cravio's LLM agent and PolySub's speech and translation pipeline. Each with tests and a demo.</p></div></li>
           <li><span class="path-when">2025–2026</span><div><h3>Full-stack developer training</h3><p>KodNest, Bengaluru. Java, Python, Django, React and MySQL.</p></div></li>
           <li><span class="path-when">2022–2024</span><div><h3>Planning engineer</h3><p>Vrishal Engineering, Jamnagar. Scheduling, materials and manpower for industrial projects.</p></div></li>
           <li><span class="path-when">2017–2021</span><div><h3>B.E. Mechanical Engineering</h3><p>AJ Institute of Engineering &amp; Technology, Mangaluru.</p></div></li>
