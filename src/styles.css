@@ -313,16 +313,25 @@ a {
   gap: clamp(32px, 6vw, 96px);
 }
 
-.hero-who {
-  margin: 0 0 22px;
-  color: var(--steel);
-  font-size: 16px;
+/* The name is the headline: wide, heavy and the largest type on the page. */
+.hero-title {
+  font-size: clamp(56px, 6.8vw, 108px);
+  line-height: 0.9;
+  font-variation-settings: 'wdth' 125;
+  font-weight: 720;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
 }
 
-.hero-title {
-  font-size: clamp(44px, 5.5vw, 92px);
-  line-height: 0.96;
-  max-width: 14.5ch;
+.hero-role {
+  margin: 22px 0 0;
+  max-width: 20ch;
+  font-size: clamp(26px, 2.7vw, 40px);
+  line-height: 1.08;
+  font-weight: 600;
+  font-variation-settings: 'wdth' 112;
+  letter-spacing: -0.025em;
+  color: var(--ink);
 }
 
 .hero-title .line {
@@ -393,6 +402,10 @@ a {
   .hero-index {
     grid-template-columns: 1fr;
   }
+
+  .hero-title {
+    font-size: 15vw;
+  }
 }
 
 .hero-device {
@@ -402,8 +415,16 @@ a {
   gap: 22px;
 }
 
+/* The phone scales with the window's height too, so the "Run the live app" button stays on the
+   first screen of a 768 px tall laptop. */
 .hero-device .phone {
-  width: clamp(230px, 20vw, 290px);
+  width: clamp(200px, min(20vw, calc((100svh - 250px) / 2.164)), 290px);
+}
+
+@media (max-width: 900px) {
+  .hero-device .phone {
+    width: clamp(230px, 62vw, 290px);
+  }
 }
 
 .hero-device-foot {
@@ -432,8 +453,8 @@ a {
     display: contents;
   }
 
-  .hero-who { order: 1; }
-  .hero-title { order: 2; }
+  .hero-title { order: 1; }
+  .hero-role { order: 2; }
   .hero-lede { order: 3; }
   .hero-device { order: 4; margin-top: 36px; }
   .hero-index { order: 5; }
