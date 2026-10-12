@@ -1287,3 +1287,18 @@ video::cue {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* The dark gym band now follows the AI projects, so it needs space above it. */
+.projects + .feature {
+  margin-top: clamp(96px, 12vw, 160px);
+}
+
+/* TaskBuddy sits on its own below the gym band, away from the AI projects. */
+.smaller-band {
+  margin: 0 auto;
+  padding: clamp(56px, 7vw, 96px) var(--edge) 0;
+}
+
+.smaller-alone {
+  margin-top: 0;
+}
